@@ -1,0 +1,67 @@
+* bitcoin component
+This component allows you to interact with a Bitcoin Core node via the [[https://bitcoincore.org/en/doc/28.0.0/][JSON-RPC API]].
+
+All functions in this component take a configuration map as the first argument, specifying the connection details for the Bitcoin Core node. For example:
+#+begin_src clojure
+  {:url "http://localhost:18443"
+   :rpc-user "rpcuser"
+   :rpc-password "rpcpassword"}
+#+end_src
+** Development setup
+To develop locally, you can set up a Bitcoin Core node configured for =regtest=, a local testing mode that allows for quick block creation without the need for real-time mining.
+*** 1. Install Bitcoin Core
+1. Download and install Bitcoin Core from the [[https://bitcoincore.org/][official website]].
+2. Ensure =bitcoind= (Bitcoin Core daemon) is accessible in your system's path.
+*** 2. Configure Bitcoin Core for regtest
+1. Open or create the Bitcoin Core configuration file at =~/.bitcoin/bitcoin.conf=.
+2. Add the following lines to set up =regtest= mode with JSON-RPC enabled:
+   #+begin_src text
+     # Enable regtest mode
+     regtest=1
+
+     # Enable compact block filters
+     blockfilterindex=1
+
+     # JSON-RPC configuration
+     [regtest]
+     rpcuser=<your_rpc_user>
+     rpcpassword=<your_rpc_password>
+     rpcbind=127.0.0.1
+     rpcport=18443
+   #+end_src
+3. Start the Bitcoin Core node:
+   #+begin_src shell
+     bitcoind -daemon
+   #+end_src
+   This command will run a Bitcoin Core node as a background process.
+
+   (To stop the node gracefully when you're done with development, run =bitcoin-cli stop=)
+*** 3. Test that the node is running
+Make sure your Bitcoin Core node is running in regtest mode before starting the application. You can verify the node’s status with:
+#+begin_src shell
+  bitcoin-cli getblockchaininfo
+#+end_src
+Now you’re ready to start development with a configured Bitcoin Core node in regtest mode.
+*** 4. Generate some bitcoins if necessary
+In regtest mode, you can create a wallet, generate blocks, and receive test bitcoins for development. Here’s how:
+1. Create a Bitcoin wallet:
+   
+   Run the following command to create a new wallet:
+   #+begin_src shell
+     bitcoin-cli createwallet "test-wallet"
+   #+end_src
+   This command creates a wallet named =test-wallet= that you can use to receive and manage test bitcoins.
+2. Generate 101 blocks and receive coins:
+   
+   Generate 101 blocks, which will yield 50 =BTC= per block for the first 100 blocks, with the rewards going to your wallet’s default address:
+   #+begin_src shell
+     bitcoin-cli -generate 101
+   #+end_src
+   By default, these generated coins are credited to the wallet that is currently loaded.
+3. Verify the balance in your wallet:
+   
+   Check your wallet balance to see the generated bitcoins:
+   #+begin_src shell
+     bitcoin-cli getbalance
+   #+end_src
+   Now, the balance in =test-wallet= can be used for making transactions in a development environment.

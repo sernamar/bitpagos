@@ -1,0 +1,5 @@
+{:paths ["src"]
+ :deps {hato/hato {:mvn/version "1.0.0"}
+        cheshire/cheshire {:mvn/version "5.13.0"}} ; required by hato for JSON parsing
+ :aliases {:test {:extra-paths []
+                  :extra-deps {}}}}

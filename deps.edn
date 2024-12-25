@@ -1,6 +1,10 @@
 {:aliases  {:dev {:extra-paths ["development/src"]
 
-                  :extra-deps {org.clojure/clojure {:mvn/version "1.12.0"}}}
+                  :extra-deps {;; components
+                               poly/bitcoin {:local/root "components/bitcoin"}
+
+                               ;; development dependencies
+                               org.clojure/clojure {:mvn/version "1.12.0"}}}
 
             :test {:extra-paths []}
 

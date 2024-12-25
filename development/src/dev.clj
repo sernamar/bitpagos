@@ -3,11 +3,10 @@
 ;; file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 (ns dev
-  (:require [com.sernamar.bitcoin.interface :as btc]))
+  (:require [com.sernamar.bitcoin.interface :as btc]
+            [com.sernamar.config.interface :as config]))
 
 (comment
-  (let [connection {:url "http://localhost:18443"
-                    :rpc-user "rpcuser"
-                    :rpc-password "rpcpassword"}]
+  (let [connection (config/read-config "dev/bitcoin-connection.edn")]
     (btc/get-balance connection))
   )

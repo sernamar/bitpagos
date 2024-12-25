@@ -1,0 +1,16 @@
+* config component
+This component provides support for reading a configuration file from the classpath using the [[https://github.com/juxt/aero][aero]] library.
+** Exampple
+Given the following =config.edn= file located in the =resources= directory:
+#+begin_src clojure
+  {:port #profile {:dev 3000
+                   :prod 5000
+                   :default 8080}
+   :foo :bar}
+#+end_src
+We can use the =read-config= function to read it:
+#+begin_src clojure
+  (config/read-config "config.edn") ;; => {:port 8080 :foo :bar}
+  (config/read-config "config.edn" :dev) ;; => {:port 3000 :foo :bar}
+  (config/read-config "config.edn" :prod) ;; => {:port 5000 :foo :bar}
+#+end_src

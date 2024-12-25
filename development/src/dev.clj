@@ -4,9 +4,11 @@
 
 (ns dev
   (:require [com.sernamar.bitcoin.interface :as btc]
-            [com.sernamar.config.interface :as config]))
+            [com.sernamar.config.interface :as config]
+            [com.sernamar.logging.interface :as log]))
 
 (comment
   (let [connection (config/read-config "dev/bitcoin-connection.edn")]
+    (log/info "Getting the balance of the wallet that is currently loaded.")
     (btc/get-balance connection))
   )

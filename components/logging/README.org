@@ -1,0 +1,2 @@
+* logging component
+This component provides support for logging using the [[https://github.com/taoensso/telemere][Telemere]] library.

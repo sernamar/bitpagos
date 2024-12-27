@@ -1,4 +1,4 @@
-* bitcoin component
+* bitcoin-core-rpc component
 This component allows you to interact with a Bitcoin Core node via the [[https://bitcoincore.org/en/doc/28.0.0/][JSON-RPC API]].
 
 All functions in this component take a configuration map as the first argument, specifying the connection details for the Bitcoin Core node. For example:

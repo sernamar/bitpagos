@@ -3,7 +3,7 @@
 ;; file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 (ns dev
-  (:require [com.sernamar.bitcoin.interface :as btc]
+  (:require [com.sernamar.bitcoin-core-rpc.interface :as btc]
             [com.sernamar.config.interface :as config]
             [com.sernamar.logging.interface :as log]))
 

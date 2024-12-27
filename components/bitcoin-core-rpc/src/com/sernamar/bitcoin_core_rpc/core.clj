@@ -2,7 +2,7 @@
 ;; License, v. 2.0. If a copy of the MPL was not distributed with this
 ;; file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-(ns com.sernamar.bitcoin.core
+(ns com.sernamar.bitcoin-core-rpc.core
   (:require [hato.client :as hc]
             [cheshire.core :as json]))
 

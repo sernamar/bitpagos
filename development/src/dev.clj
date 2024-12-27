@@ -4,11 +4,15 @@
 
 (ns dev
   (:require [com.sernamar.bitcoin-core-rpc.interface :as btc]
-            [com.sernamar.config.interface :as config]
-            [com.sernamar.logging.interface :as log]))
+            [com.sernamar.config.interface :as config]))
 
 (comment
-  (let [connection (config/read-config "dev/bitcoin-connection.edn")]
-    (log/info "Getting the balance of the wallet that is currently loaded.")
-    (btc/get-balance connection))
+  (let [rpc-config (config/read-config "dev/rpc-config.edn")]
+    (btc/list-wallets rpc-config))
+  (let [rpc-config (config/read-config "dev/rpc-config.edn")]
+    (btc/get-balance rpc-config))
+  (let [rpc-config (config/read-config "dev/rpc-config.edn")]
+    (btc/get-balance rpc-config :avoid-reuse false))
+  (let [rpc-config (config/read-config "dev/rpc-config.edn")]
+    (btc/get-wallet-info rpc-config))
   )

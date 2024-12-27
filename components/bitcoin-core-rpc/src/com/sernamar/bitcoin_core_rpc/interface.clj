@@ -3,7 +3,6 @@
 ;; file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 (ns com.sernamar.bitcoin-core-rpc.interface
-  {:clj-kondo/config '{:linters {:unused-binding {:exclude-destructured-keys-in-fn-args true}}}}
   (:require [com.sernamar.bitcoin-core-rpc.wallet :as wallet]))
 
 ;;; Wallet functions
